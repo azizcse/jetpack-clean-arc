@@ -1,5 +1,6 @@
 package com.tsl.base.ui.common
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,6 +16,7 @@ import androidx.compose.ui.graphics.Color
  */
 @Composable
 fun ProgressView(isLoading: Boolean) {
+    Log.e("kdlfkldf", "Called compose :$isLoading")
     if (isLoading) {
         Box(
             modifier = Modifier
@@ -22,7 +24,7 @@ fun ProgressView(isLoading: Boolean) {
                 .background(Color.Black.copy(alpha = 0.5f)),
             contentAlignment = Alignment.Center
         ) {
-            CircularProgressIndicator(color = Color.White)
+            CircularProgressIndicator(color = Color.Red)
         }
     }
 }

@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("com.google.dagger.hilt.android") // Hilt plugin
+    id("com.google.devtools.ksp") // KSP plugin for Hilt
 }
 
 android {
@@ -27,17 +29,18 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.8"
     }
     packaging {
         resources {
@@ -45,7 +48,9 @@ android {
         }
     }
 }
-
+val hiltVersion = "2.50"
+val retrofit_version = "2.9.0"
+val okhttp_version = "4.12.0"
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -60,7 +65,19 @@ dependencies {
     implementation(libs.core.splash)
     //Compose
     implementation("io.coil-kt:coil-compose:2.5.0")
-    implementation ("androidx.navigation:navigation-compose:2.8.5")
+    implementation("androidx.navigation:navigation-compose:2.8.5")
+
+
+    implementation("com.google.dagger:hilt-android:$hiltVersion")
+    ksp("com.google.dagger:hilt-compiler:$hiltVersion") // KSP for Hilt annotation processing
+    implementation("androidx.hilt:hilt-navigation-compose:1.1.0") // For Compose Navigation integration
+
+
+    implementation("com.squareup.retrofit2:retrofit:$retrofit_version")
+    implementation("com.squareup.retrofit2:converter-moshi:$retrofit_version")
+    implementation("com.squareup.okhttp3:okhttp:$okhttp_version")
+    implementation("com.squareup.okhttp3:logging-interceptor:$okhttp_version")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
