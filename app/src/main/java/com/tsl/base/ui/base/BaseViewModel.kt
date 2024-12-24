@@ -22,7 +22,7 @@ open class BaseViewModel(private val progressViewModel: ProgressViewModel) : Vie
             if (isShowLoader) {
                 progressViewModel.showProgress()
             }
-            delay(5000)
+            delay(500)
             val response = api.invoke()
             if (isShowLoader) {
                 progressViewModel.hideProgress()
