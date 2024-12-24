@@ -78,6 +78,8 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:$okhttp_version")
     implementation("com.squareup.okhttp3:logging-interceptor:$okhttp_version")
 
+    implementation ("androidx.compose.runtime:runtime-livedata:1.5.1")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

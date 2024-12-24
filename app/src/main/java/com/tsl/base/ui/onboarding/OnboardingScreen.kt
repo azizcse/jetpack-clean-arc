@@ -30,7 +30,6 @@ fun OnboardingScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(modifier = Modifier.clickable {
-            Toast.makeText(context, "Text clicked", Toast.LENGTH_LONG).show()
             onboardingViewModel.getUser()
         }, text = "Demo text")
     }

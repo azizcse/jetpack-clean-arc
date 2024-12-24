@@ -26,6 +26,7 @@ open class BaseViewModel(private val progressViewModel: ProgressViewModel) : Vie
             val response = api.invoke()
             if (isShowLoader) {
                 progressViewModel.hideProgress()
+                progressViewModel.showSnackBar("Called success")
             }
             if (response.isSuccessful && response.body() != null) {
                 return response
