@@ -3,21 +3,16 @@ package com.tsl.base.ui.main
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
-import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -25,11 +20,12 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.res.stringResource
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
+import com.tsl.base.R
 import com.tsl.base.ui.navgraph.NavGraph
-import com.tsl.base.ui.theme.Jetpack_compose_baseTheme
+import com.tsl.base.ui.theme.BaseTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -50,7 +46,7 @@ class MainActivity : ComponentActivity() {
                     monitorNetworkConnectivity(connectivityManager, isConnected)
                 }
             }
-            Jetpack_compose_baseTheme {
+            BaseTheme {
                 Box(
                     modifier = Modifier
                         .background(MaterialTheme.colorScheme.background)
@@ -77,7 +73,7 @@ fun NoInternetDialog() {
     AlertDialog(
         onDismissRequest = { /* Dialog dismissed */ },
         title = { Text(text = "No Internet") },
-        text = { Text(text = "You are not connected to the internet. Please check your connection.") },
+        text = { Text(text = stringResource(id = R.string.no_internet_info)) },
         confirmButton = {
             Button(onClick = { /* Retry or dismiss logic */ }) {
                 Text(text = "Retry")

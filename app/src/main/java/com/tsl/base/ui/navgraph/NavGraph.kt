@@ -26,6 +26,7 @@ import androidx.navigation.compose.rememberNavController
 import com.tsl.base.ui.base.ProgressViewModel
 import com.tsl.base.ui.common.ProgressView
 import com.tsl.base.ui.onboarding.OnboardingScreen
+import com.tsl.base.ui.onboarding.OnboardingViewModel
 
 /**
  * @author md-azizul-islam
@@ -42,7 +43,8 @@ fun NavGraph(mainViewModel: MainSharedViewModel) {
         NavHost(navController = navController, startDestination = mainViewModel.startDestination.destinationNav) {
             navigation(route = Navigation.OnboardingNav.nav, startDestination = Route.OnboardingScreen.path) {
                 composable(route = Route.OnboardingScreen.path) {
-                    OnboardingScreen(onClick = {})
+                    val viewModel: OnboardingViewModel = hiltViewModel()
+                    OnboardingScreen(onEvent = viewModel::onEvent)
                 }
             }
         }

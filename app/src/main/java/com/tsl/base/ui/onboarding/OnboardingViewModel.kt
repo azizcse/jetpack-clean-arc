@@ -27,4 +27,12 @@ class OnboardingViewModel @Inject constructor(
         }
     }
 
+    fun onEvent(event: OnBoardingEvent){
+        when(event){
+            is OnBoardingEvent.SaveAppEntry ->{
+               // saveUserEntry()
+            }
+        }
+    }
+
 }

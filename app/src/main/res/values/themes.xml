@@ -3,8 +3,8 @@
 
     <style name="Theme.Jetpack_compose_base" parent="android:Theme.Material.Light.NoActionBar" />
     <style name="Theme.MySplash" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/white</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="windowSplashScreenBackground">@drawable/bg_log</item>
+        <item name="windowSplashScreenAnimatedIcon">@null</item>
         <item name="postSplashScreenTheme">@style/Theme.Jetpack_compose_base</item>
     </style>
 </resources>
