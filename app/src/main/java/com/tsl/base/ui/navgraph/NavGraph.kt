@@ -1,5 +1,6 @@
 package com.tsl.base.ui.navgraph
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -33,14 +34,15 @@ import com.tsl.base.ui.onboarding.OnboardingViewModel
  * Created 12/23/24 at 4:00 PM
  */
 @Composable
-fun NavGraph(mainViewModel: MainSharedViewModel) {
+fun NavGraph(destination: String) {
     val navController = rememberNavController()
     val snackBarHostState = remember { SnackbarHostState() }
     val progressViewModel: ProgressViewModel = hiltViewModel()
     val isProgressVisible by progressViewModel.isProgressVisible.collectAsState()
     val showSnackBar by progressViewModel.showSnackBar.observeAsState()
     Box(modifier = Modifier.fillMaxSize()) {
-        NavHost(navController = navController, startDestination = mainViewModel.startDestination.destinationNav) {
+        NavHost(navController = navController, startDestination = destination) {
+            Log.e("jjjsdj", "Init called ------------- ${destination}")
             navigation(route = Navigation.OnboardingNav.nav, startDestination = Route.OnboardingScreen.path) {
                 composable(route = Route.OnboardingScreen.path) {
                     val viewModel: OnboardingViewModel = hiltViewModel()

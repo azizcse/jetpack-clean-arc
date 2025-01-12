@@ -12,6 +12,6 @@ sealed class Route(val path: String) {
 
 sealed class Navigation(val nav: String) {
     data object OnboardingNav : Navigation(nav = "OnboardingNav")
-    data object LoginNav : Navigation(nav = "OnboardingNav")
-    data object DashboardNav : Navigation(nav = "OnboardingNav")
+    data object LoginNav : Navigation(nav = "LoginNav")
+    data object DashboardNav : Navigation(nav = "DashBoardNav")
 }

@@ -64,7 +64,7 @@ fun MainApp(isConnected: MutableState<Boolean>, mainViewModel: MainSharedViewMod
     if (!isConnected.value) {
         NoInternetDialog()
     } else {
-        NavGraph(mainViewModel = mainViewModel)
+        NavGraph(destination = mainViewModel.startDestination.value)
     }
 }
 
