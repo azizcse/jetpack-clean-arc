@@ -11,6 +11,7 @@ import com.tsl.base.data.local.PrefKey
 import com.tsl.base.data.local.PrefManager
 import com.tsl.base.domain.usecase.AppStateUC
 import com.tsl.base.ui.base.BaseViewModel
+import com.tsl.base.ui.base.ProgressViewModel
 import com.tsl.base.ui.navgraph.Navigation
 import com.tsl.base.ui.navgraph.Route
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,20 +28,17 @@ import javax.inject.Inject
  * Created 12/23/24 at 3:57 PM
  */
 @HiltViewModel
-class MainSharedViewModel @Inject constructor(private val appStateUC: AppStateUC) : ViewModel() {
+class MainSharedViewModel @Inject constructor(private val appStateUC: AppStateUC, progressViewModel: ProgressViewModel) : BaseViewModel(progressViewModel) {
 
-    private val _loading = MutableStateFlow(true)
+    private val _loading = MutableStateFlow(false)
     val loading: StateFlow<Boolean> = _loading.asStateFlow()
 
     private val _startDestination = mutableStateOf(Navigation.OnboardingNav.nav)
     val startDestination: State<String> = _startDestination
 
     init {
-        Log.e("jjjsdj", "Init called++++++++++++++")
         viewModelScope.launch {
-
             appStateUC.readAppState.invoke().collect { value ->
-                Log.e("jjjsdj", "Init called++++++++++++++ $value")
                 when (value) {
                     Navigation.OnboardingNav.nav -> _startDestination.value = Navigation.OnboardingNav.nav
                     Navigation.DashboardNav.nav -> _startDestination.value = Navigation.DashboardNav.nav

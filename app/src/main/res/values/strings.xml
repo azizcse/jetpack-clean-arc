@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">jetpack_compose_base</string>
     <string name="no_internet_info">You are not connected to the internet. Please check your connection.</string>
+    <string name="login">Login Screen</string>
 </resources>

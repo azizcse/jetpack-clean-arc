@@ -26,6 +26,7 @@ import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import com.tsl.base.ui.base.ProgressViewModel
 import com.tsl.base.ui.common.ProgressView
+import com.tsl.base.ui.login.Login
 import com.tsl.base.ui.onboarding.OnboardingScreen
 import com.tsl.base.ui.onboarding.OnboardingViewModel
 
@@ -42,11 +43,15 @@ fun NavGraph(destination: String) {
     val showSnackBar by progressViewModel.showSnackBar.observeAsState()
     Box(modifier = Modifier.fillMaxSize()) {
         NavHost(navController = navController, startDestination = destination) {
-            Log.e("jjjsdj", "Init called ------------- ${destination}")
             navigation(route = Navigation.OnboardingNav.nav, startDestination = Route.OnboardingScreen.path) {
                 composable(route = Route.OnboardingScreen.path) {
                     val viewModel: OnboardingViewModel = hiltViewModel()
                     OnboardingScreen(onEvent = viewModel::onEvent)
+                }
+            }
+            navigation(route = Navigation.LoginNav.nav, startDestination = Route.LoginScreen.path) {
+                composable(route = Route.LoginScreen.path) {
+                    Login()
                 }
             }
         }

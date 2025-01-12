@@ -3,8 +3,11 @@ package com.tsl.base.ui.onboarding
 import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.tsl.base.domain.UserRepository
+import com.tsl.base.domain.usecase.AppStateUC
 import com.tsl.base.ui.base.BaseViewModel
 import com.tsl.base.ui.base.ProgressViewModel
+import com.tsl.base.ui.navgraph.Navigation
+import com.tsl.base.utils.Constants
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -15,7 +18,8 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class OnboardingViewModel @Inject constructor(
-    progressViewModel: ProgressViewModel, private val userRepository: UserRepository
+    progressViewModel: ProgressViewModel, private val userRepository: UserRepository,
+    private val appStateUC: AppStateUC
 ) : BaseViewModel(progressViewModel) {
 
     fun getUser() {
@@ -27,12 +31,15 @@ class OnboardingViewModel @Inject constructor(
         }
     }
 
-    fun onEvent(event: OnBoardingEvent){
-        when(event){
-            is OnBoardingEvent.SaveAppEntry ->{
-               // saveUserEntry()
+    fun onEvent(event: OnBoardingEvent) {
+        viewModelScope.launch {
+            when (event) {
+                is OnBoardingEvent.SaveAppEntry -> {
+                    appStateUC.saveAppState.invoke(Constants.APP_ENTRY, Navigation.LoginNav.nav)
+                }
             }
         }
+
     }
 
 }
